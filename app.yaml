@@ -1,0 +1,28 @@
+application: plainsq
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
+- url: /admin/.*
+  script: $PYTHON_LIB/google/appengine/ext/admin
+  login: admin
+- url: /(.*\.css)
+  static_files: \1
+  upload: .*\.css
+- url: .*
+  script: main.py
+
+admin_console:
+  pages:
+  - name: My Console
+    url: /admin/interactive
+  - name: My Memcache
+    url: /admin/memcache
+  - name: My XMPP
+    url: /admin/xmpp
+  - name: My Inbound Mail
+    url: /admin/inboundmail
